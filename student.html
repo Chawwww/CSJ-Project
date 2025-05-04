@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Student</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/icon/icon-10.png" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      
+
+      .card {
+          transition: all 0.3s;
+          border: none;
+          border-radius: 10px;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+          margin-bottom: 24px;
+          overflow: hidden;
+      }
+
+      .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+      }
+
+      .section-title {
+            color: #2EB872;
+            border-bottom: 3px solid #2EB872;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+        
+        .video-container video,
+        .video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+        }
+        
+        .nav-pills .nav-link {
+            color: #2EB872;
+            background-color: transparent;
+            margin-right: 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            padding: 8px 20px;
+            border: 1px solid #2EB872;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: #2EB872;
+            color: white;
+        }
+        
+        .nav-pills .nav-link:hover:not(.active) {
+            background-color: rgba(46, 125, 50, 0.1);
+        }
+        
+        .video-info-card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            border-left: 5px solid #2EB872;
+        }
+        
+        .video-title {
+            color: #2EB872;
+            margin-bottom: 15px;
+        }
+        
+        .video-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .video-duration {
+            background-color: #2EB872;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .video-info-tag {
+            background-color: #e8f5e9;
+            color: #2EB872;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .download-btn {
+            color: #2EB872;
+            border-color: #2EB872;
+            border-radius: 20px;
+            padding: 5px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: #2EB872;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-pills {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .nav-pills .nav-link {
+                white-space: nowrap;
+            }
+        }
+
+      .quiz-container {
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          margin-bottom: 20px;
+      }
+
+      .quiz-options label {
+          display: block;
+          padding: 10px;
+          margin: 5px 0;
+          background-color: #f8f9fa;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s;
+      }
+
+      .quiz-options label:hover {
+          background-color: #e9ecef;
+      }
+
+      .game-card {
+          height: 150px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          padding: 15px;
+          text-align: center;
+      }
+
+      .game-card i {
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+      }
+
+  </style>
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+      <div class="row gx-0 d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+          <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+            <small class="fa fa-map-marker-alt text-primary me-2"></small>
+            <small>123 Street, Malaysia</small>
+          </div>
+          <div class="h-100 d-inline-flex align-items-center py-3">
+            <small class="far fa-clock text-primary me-2"></small>
+            <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+          </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+          <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+            <small class="fa fa-phone-alt text-primary me-2"></small>
+            <small>+012 345 6789</small>
+          </div>
+          <div class="h-100 d-inline-flex align-items-center">
+            <a class="btn btn-sm-square bg-white text-primary me-1" href=""
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a class="btn btn-sm-square bg-white text-primary me-1" href=""
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a class="btn btn-sm-square bg-white text-primary me-1" href=""
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a class="btn btn-sm-square bg-white text-primary me-0" href=""
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Topbar End -->
+    
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <!-- Brand with Logo and Text -->
+            <a href="index.html" class="navbar-brand p-0">
+                <img class="img-fluid me-3" src="img/icon/icon-10.png" alt="Icon" />
+                <h1 class="m-0 text-primary">CSJ</h1>
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse py-4 py-lg-0" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Animals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Plants</a>
+                    </li>
+                    <!-- Community Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a href="#community" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Community</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="animal.html" class="dropdown-item">Our Animals</a>
+                            <a href="student.html" class="dropdown-item active">Student</a>
+                            <a href="professional.html" class="dropdown-item">Professional</a>
+                            <a href="#activity" class="dropdown-item">Activity Hours</a>
+                            <a href="#support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="ms-3 d-flex">
+                    <a href="#" class="text-primary me-3"><i class="fas fa-search"></i></a>
+                    <a href="#" class="text-primary"><i class="fas fa-microphone"></i></a>
+                </div>
+        </div>
+      </nav>
+      <!--nav end-->
+   
+
+    <!-- Page Header Start -->
+    <div
+      class="container-fluid header-bg py-5 mb-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <h1 class="display-4 text-white mb-3 animated slideInDown">
+          Student
+        </h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+              <a class="text-white" href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a class="text-white" href="#">Community</a>
+            </li>
+            <li class="breadcrumb-item text-primary active" aria-current="page">
+              Student
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Main Content -->
+      <div class="container py-5">
+        <div class="row g-5">
+            <!-- Main Content Column -->
+            <div class="col-lg-8">
+                <!-- Introduction Section -->
+                <div class="mb-5">
+                    <h1 class="display-5 mb-4">Without any late, Let we start</h1>
+                    <p class="lead">Explore our interactive learning resources on SDG 15: Life on Land. Protect, restore, and promote sustainable use of terrestrial ecosystems.</p>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <a href="#videos" class="btn btn-primary px-4 me-3">
+                            <i class="fas fa-play me-2"></i>Watch Videos
+                        </a>
+                        <a href="#quizzes" class="btn btn-outline-primary px-4 me-3">
+                            <i class="fas fa-question-circle me-2"></i>Take Quizzes
+                        </a>
+                        <a href="#games" class="btn btn-outline-primary px-4">
+                            <i class="fas fa-gamepad me-2"></i>Play Games
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Why SDG 15 Matters</h5>
+                            <p>Forests cover 31% of the Earth's land area and are home to 80% of all terrestrial species. They play a crucial role in combating climate change by absorbing carbon dioxide. Yet, deforestation and land degradation continue to threaten these vital ecosystems.</p>
+                            <p>By 2030, we need to protect and restore ecosystems, combat desertification, and halt biodiversity loss to ensure a sustainable future for all life on Earth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educational Videos Section -->
+        <div id="videos" class="mb-5">
+            <h2 class="section-title" style="color: black;">
+                <i class="fas fa-video me-2"></i>Educational Videos
+            </h2>
+            
+            <div class="mb-4">
+                <p class="lead">Explore our curated collection of educational videos on SDG 15: Life on Land. Learn about biodiversity conservation, sustainable land management, and how you can make a difference.</p>
+            </div>
+            
+            <ul class="nav nav-pills mb-4" id="videoTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="intro-tab" data-bs-toggle="pill" data-bs-target="#intro" type="button" role="tab" aria-controls="intro" aria-selected="true">
+                        <i class="fas fa-play-circle me-2"></i>Introduction
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="biodiversity-tab" data-bs-toggle="pill" data-bs-target="#biodiversity" type="button" role="tab" aria-controls="biodiversity" aria-selected="false">
+                        <i class="fas fa-leaf me-2"></i>Biodiversity
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="forests-tab" data-bs-toggle="pill" data-bs-target="#forests" type="button" role="tab" aria-controls="forests" aria-selected="false">
+                        <i class="fas fa-tree me-2"></i>Forests
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="solutions-tab" data-bs-toggle="pill" data-bs-target="#solutions" type="button" role="tab" aria-controls="solutions" aria-selected="false">
+                        <i class="fas fa-lightbulb me-2"></i>Solutions
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="videoTabContent">
+                <!-- Introduction Tab -->
+                <div class="tab-pane fade show active" id="intro" role="tabpanel" aria-labelledby="intro-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="video-container">
+                                <video controls poster="img/Screenshot 2025-04-17 223751.png">
+                                    <source src="video educatinal/Life on Land 🌳 SDG 15 🐻 Sustainable Development Goals for Kids.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="video-info-card h-100">
+                                <h4 class="video-title">Introduction to SDG 15: Life on Land</h4>
+                                <p>This comprehensive introduction explains the goals and targets of SDG 15, why they matter, and how they connect to other sustainable development goals.</p>
+                                
+                                <div class="video-meta">
+                                    <span class="video-duration">
+                                        <i class="far fa-clock me-1"></i>4:03
+                                    </span>
+                                    <span class="video-info-tag">
+                                        <i class="fas fa-calendar-alt me-1"></i>March 2025
+                                    </span>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <a href="#" class="btn download-btn">
+                                        <i class="fas fa-file-alt me-1"></i>Download Transcript
+                                    </a>
+                                    <a href="video educatinal/Life on Land 🌳 SDG 15 🐻 Sustainable Development Goals for Kids.mp4" class="btn download-btn ms-2">
+                                        <i class="fas fa-download me-1"></i>Download Video
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-top">
+                                    <h6>Key Topics:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <span class="badge bg-light text-dark">SDG Overview</span>
+                                        <span class="badge bg-light text-dark">UN Targets</span>
+                                        <span class="badge bg-light text-dark">Global Efforts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biodiversity Tab -->
+                <div class="tab-pane fade" id="biodiversity" role="tabpanel" aria-labelledby="biodiversity-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="video-container">
+                                <video controls poster="img/Screenshot 2025-04-17 223946.png">
+                                    <source src="video educatinal/Why is biodiversity so important_ - Kim Preshoff.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="video-info-card h-100">
+                                <h4 class="video-title">Biodiversity Loss and Its Impacts</h4>
+                                <p>Learn about the current biodiversity crisis, its causes, and why maintaining biodiversity is crucial for ecosystem health and human wellbeing.</p>
+                                
+                                <div class="video-meta">
+                                    <span class="video-duration">
+                                        <i class="far fa-clock me-1"></i>4:18
+                                    </span>
+                                    <span class="video-info-tag">
+                                        <i class="fas fa-calendar-alt me-1"></i>February 2025
+                                    </span>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <a href="video educatinal/Why is biodiversity so important_ - Kim Preshoff.mp4" class="btn download-btn">
+                                        <i class="fas fa-file-alt me-1"></i>Download Transcript
+                                    </a>
+                                    <a href="video educatinal/Why is biodiversity so important_ - Kim Preshoff.mp4" class="btn download-btn ms-2">
+                                        <i class="fas fa-download me-1"></i>Download Video
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-top">
+                                    <h6>Key Topics:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <span class="badge bg-light text-dark">Extinction</span>
+                                        <span class="badge bg-light text-dark">Ecosystems</span>
+                                        <span class="badge bg-light text-dark">Conservation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forests Tab -->
+                <div class="tab-pane fade" id="forests" role="tabpanel" aria-labelledby="forests-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="video-container">
+                                <video controls poster="img/Screenshot 2025-04-17 224249.png">
+                                    <source src="video educatinal/One Earth - Environmental Short Film.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="video-info-card h-100">
+                                <h4 class="video-title">Forests: The Lungs of Our Planet</h4>
+                                <p>Explore the vital role forests play in our ecosystems, the threats they face from deforestation, and sustainable forestry practices.</p>
+                                
+                                <div class="video-meta">
+                                    <span class="video-duration">
+                                        <i class="far fa-clock me-1"></i>4:26
+                                    </span>
+                                    <span class="video-info-tag">
+                                        <i class="fas fa-calendar-alt me-1"></i>January 2025
+                                    </span>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <a href="#" class="btn download-btn">
+                                        <i class="fas fa-file-alt me-1"></i>Download Transcript
+                                    </a>
+                                    <a href="video educatinal/One Earth - Environmental Short Film.mp4" class="btn download-btn ms-2">
+                                        <i class="fas fa-download me-1"></i>Download Video
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-top">
+                                    <h6>Key Topics:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <span class="badge bg-light text-dark">Reforestation</span>
+                                        <span class="badge bg-light text-dark">Deforestation</span>
+                                        <span class="badge bg-light text-dark">Carbon Sinks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solutions Tab -->
+                <div class="tab-pane fade" id="solutions" role="tabpanel" aria-labelledby="solutions-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="video-container">
+                                <video controls poster="img/Screenshot 2025-04-17 224510.png">
+                                    <source src="video educatinal/Amazon_ The lungs of our planet by BBC.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="video-info-card h-100">
+                                <h4 class="video-title">Sustainable Solutions for Life on Land</h4>
+                                <p>Discover innovative approaches to conservation, restoration, and sustainable land management that are making a difference around the world.</p>
+                                
+                                <div class="video-meta">
+                                    <span class="video-duration">
+                                        <i class="far fa-clock me-1"></i>3:57
+                                    </span>
+                                    <span class="video-info-tag">
+                                        <i class="fas fa-calendar-alt me-1"></i>April 2025
+                                    </span>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <a href="#" class="btn download-btn">
+                                        <i class="fas fa-file-alt me-1"></i>Download Transcript
+                                    </a>
+                                    <a href="video educatinal/Amazon_ The lungs of our planet by BBC.mp4" class="btn download-btn ms-2">
+                                        <i class="fas fa-download me-1"></i>Download Video
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-top">
+                                    <h6>Key Topics:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <span class="badge bg-light text-dark">Restoration</span>
+                                        <span class="badge bg-light text-dark">Sustainable Use</span>
+                                        <span class="badge bg-light text-dark">Community Action</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Videos Section -->
+            <div class="mt-5">
+                <h4 class="mb-4">Related Videos</h4>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Related Video 1 -->
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <img src="img/stu1.jpg" class="card-img-top" alt="Related Video 1">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="fas fa-play-circle fa-3x text-white opacity-75"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Climate Change and Biodiversity</h5>
+                                <p class="card-text small">Explore the complex relationship between climate change and biodiversity loss.</p>
+                                <span class="badge bg-light text-dark">8:45</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Video 2 -->
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <img src="img/stu2.jpg" class="card-img-top" alt="Related Video 2">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="fas fa-play-circle fa-3x text-white opacity-75"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Sustainable Agriculture Practices</h5>
+                                <p class="card-text small">Learn about farming techniques that protect biodiversity and soil health.</p>
+                                <span class="badge bg-light text-dark">10:22</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Video 3 -->
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <img src="img/st3.jpg" class="card-img-top" alt="Related Video 3">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="fas fa-play-circle fa-3x text-white opacity-75"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Wildlife Conservation Success Stories</h5>
+                                <p class="card-text small">Inspiring examples of successful species recovery and habitat protection.</p>
+                                <span class="badge bg-light text-dark">12:18</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Sidebar Column -->
+        <div class="col-lg-4">
+            <!-- Resource Links Widget -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Key Resources</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-file-pdf me-3 text-primary"></i>
+                        <div>
+                            <h6 class="mb-0">SDG 15 Fact Sheet</h6>
+                            <small class="text-muted">PDF | 2.4 MB</small>
+                        </div>
+                        <a href="#" class="ms-auto btn btn-sm btn-outline-primary"><i class="fas fa-download"></i></a>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-chart-line me-3 text-primary"></i>
+                        <div>
+                            <h6 class="mb-0">Biodiversity Data Visualizer</h6>
+                            <small class="text-muted">Interactive Tool</small>
+                        </div>
+                        <a href="#" class="ms-auto btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-book me-3 text-primary"></i>
+                        <div>
+                            <h6 class="mb-0">Conservation Guide</h6>
+                            <small class="text-muted">Online Manual</small>
+                        </div>
+                        <a href="#" class="ms-auto btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-map-marked-alt me-3 text-primary"></i>
+                        <div>
+                            <h6 class="mb-0">Protected Areas Map</h6>
+                            <small class="text-muted">Interactive Map</small>
+                        </div>
+                        <a href="#" class="ms-auto btn btn-sm btn-outline-primary"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Tracker Widget -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Your Learning Progress</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Videos watched</span>
+                            <span>1/4</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Quizzes completed</span>
+                            <span>0/3</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Games played</span>
+                            <span>0/4</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="#" class="btn btn-sm btn-primary">View Detailed Progress</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Events Widget -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Upcoming Events</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6>Virtual Field Trip: Amazon Rainforest</h6>
+                        <div class="d-flex text-muted small mb-2">
+                            <div class="me-3"><i class="far fa-calendar-alt me-1"></i> April 22, 2025</div>
+                            <div><i class="far fa-clock me-1"></i> 3:00 PM</div>
+                        </div>
+                        <p class="small mb-0">Join our expert guides for a virtual tour of the Amazon's biodiversity.</p>
+                    </div>
+                    <hr>
+                    <div>
+                        <h6>Webinar: Sustainable Land Management</h6>
+                        <div class="d-flex text-muted small mb-2">
+                            <div class="me-3"><i class="far fa-calendar-alt me-1"></i> May 5, 2025</div>
+                            <div><i class="far fa-clock me-1"></i> 5:00 PM</div>
+                        </div>
+                        <p class="small mb-0">Learn practical techniques for land conservation from field experts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+                <!-- Interactive Quizzes Section -->
+                <div id="quizzes" class="mb-5">
+                    <h2 class="section-title" style="color: black;">Test Your Knowledge</h2>
+                    
+                    <div class="accordion" id="quizAccordion">
+                        <!-- Quiz 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Quiz 1: SDG 15 Basics
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#quizAccordion">
+                                <div class="accordion-body">
+                                    <div class="quiz-container">
+                                        <h5 class="quiz-question">1. What percentage of Earth's land area is covered by forests?</h5>
+                                        <div class="quiz-options">
+                                            <label><input type="radio" name="q1" value="a"> a) 15%</label>
+                                            <label><input type="radio" name="q1" value="b"> b) 31%</label>
+                                            <label><input type="radio" name="q1" value="c"> c) 47%</label>
+                                            <label><input type="radio" name="q1" value="d"> d) 62%</label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary check-answer" data-correct="b">Check Answer</button>
+                                            <div class="quiz-feedback mt-2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="quiz-container">
+                                        <h5 class="quiz-question">2. Which of the following is NOT a target of SDG 15?</h5>
+                                        <div class="quiz-options">
+                                            <label><input type="radio" name="q2" value="a"> a) Combat desertification</label>
+                                            <label><input type="radio" name="q2" value="b"> b) Ensure sustainable consumption patterns</label>
+                                            <label><input type="radio" name="q2" value="c"> c) Halt biodiversity loss</label>
+                                            <label><input type="radio" name="q2" value="d"> d) Sustainable forest management</label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary check-answer" data-correct="b">Check Answer</button>
+                                            <div class="quiz-feedback mt-2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <a href="quizz.html" class="btn btn-outline-primary">View All SDG 15 Basics Questions</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Quiz 2: Biodiversity and Conservation
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#quizAccordion">
+                                <div class="accordion-body">
+                                    <div class="quiz-container">
+                                        <h5 class="quiz-question">1. What is the main cause of biodiversity loss globally?</h5>
+                                        <div class="quiz-options">
+                                            <label><input type="radio" name="q3" value="a"> a) Climate change</label>
+                                            <label><input type="radio" name="q3" value="b"> b) Habitat loss and degradation</label>
+                                            <label><input type="radio" name="q3" value="c"> c) Invasive species</label>
+                                            <label><input type="radio" name="q3" value="d"> d) Pollution</label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary check-answer" data-correct="b">Check Answer</button>
+                                            <div class="quiz-feedback mt-2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="quiz-container">
+                                        <h5 class="quiz-question">2. What is a biodiversity hotspot?</h5>
+                                        <div class="quiz-options">
+                                            <label><input type="radio" name="q4" value="a"> a) An area with high temperatures threatening wildlife</label>
+                                            <label><input type="radio" name="q4" value="b"> b) A region with high biodiversity that is under threat</label>
+                                            <label><input type="radio" name="q4" value="c"> c) A location where new species are frequently discovered</label>
+                                            <label><input type="radio" name="q4" value="d"> d) A protected wildlife sanctuary</label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary check-answer" data-correct="b">Check Answer</button>
+                                            <div class="quiz-feedback mt-2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <a href="quizz.html" class="btn btn-outline-primary">View All Biodiversity Questions</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Quiz 3: Sustainable Land Management
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#quizAccordion">
+                                <div class="accordion-body">
+                                    <div class="text-center py-4">
+                                        <i class="fas fa-lock text-muted fa-3x mb-3"></i>
+                                        <h5>Complete the previous quizzes to unlock this section</h5>
+                                        <p class="text-muted">Test your knowledge of the basics first before moving to advanced topics.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educational Games Section -->
+                <div id="games" class="mb-5">
+                    <h2 class="section-title" style="color: black;">Learn Through Play</h2>
+                    
+                    <div class="row g-4">
+                        <!-- Game 1 -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body game-card">
+                                    <i class="fas fa-tree text-primary"></i>
+                                    <h5>Forest Ecosystem Simulator</h5>
+                                    <p class="text-muted">Build and manage your own forest ecosystem while learning about interconnected species.</p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pt-0">
+                                    <a href="https://gizmos.explorelearning.com/find-gizmos/launch-gizmo?resourceId=639" class="btn btn-sm btn-primary w-100" target="_blank">Play Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Game 2 -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body game-card">
+                                    <i class="fas fa-puzzle-piece text-primary"></i>
+                                    <h5>Biodiversity Match</h5>
+                                    <p class="text-muted">Test your knowledge of species and their habitats in this matching challenge.</p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pt-0">
+                                    <a href="https://wordwall.net/resource/59849785/biodiversity-memory-game" class="btn btn-sm btn-primary w-100" target="_blank">Play Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Game 3 -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body game-card">
+                                    <i class="fas fa-globe-americas text-primary"></i>
+                                    <h5>Conservation Hero</h5>
+                                    <p class="text-muted">Take on challenges to protect endangered habitats around the world.</p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pt-0">
+                                    <a href="https://www.theconservationgames.com/" class="btn btn-sm btn-primary w-100" target="_blank">Play Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Game 4 -->
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body game-card">
+                                    <i class="fas fa-seedling text-primary"></i>
+                                    <h5>Reforestation Challenge</h5>
+                                    <p class="text-muted">Plant trees strategically to restore degraded land in this ecosystem simulation.</p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pt-0">
+                                    <a href="https://www.whatdesigncando.com/stories/a-mobile-game-that-plants-real-trees/" class="btn btn-sm btn-outline-primary w-100" target="_blank">Coming Soon</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    
+
+    <!-- Footer Start -->
+    <div
+      class="container-fluid footer bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-light mb-4">Address</h5>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>123 Street, Malaysia
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-phone-alt me-3"></i>+012 345 67890
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>CSJ@gmail.com
+            </p>
+            <div class="d-flex pt-2">
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-light mb-4">Quick Links</h5>
+            <a class="btn btn-link" href="index.html">About Us</a>
+            <a class="btn btn-link" href="#contact">Contact Us</a>
+            <a class="btn btn-link" href="index.html">Terms & Condition</a>
+            <a class="btn btn-link" href="index.html">Support</a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-light mb-4">Popular Links</h5>
+            <a class="btn btn-link" href="index.html">About Us</a>
+            <a class="btn btn-link" href="contact.html">Contact Us</a>
+            <a class="btn btn-link" href="index.html">Terms & Condition</a>
+            <a class="btn btn-link" href="#support">Support</a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-light mb-4">Newsletter</h5>
+            <p>Sign in if you don't wanna to lost you data.</p>
+            <div class="position-relative mx-auto" style="max-width: 400px">
+              <input
+                class="form-control border-0 w-100 py-3 ps-4 pe-5"
+                type="text"
+                placeholder="Your email"
+              />
+              <button
+                type="button"
+                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+              >
+                SignUp
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a class="border-bottom" href="#">CSJ</a>, All
+              Right Reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+              Designed By
+              <a class="border-bottom" href="https://htmlcodex.com"
+                >HTML Codex</a
+              >
+              <br />Distributed By:
+              <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!--ai chat bot-->
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+          <div class="chat-header">
+            <h4>Conservation Support</h4>
+            <span class="close-chat">&times;</span>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+              Hi there! I'm here to help with any questions about endangered species and conservation. How can I assist you today?
+            </div>
+          </div>
+          <div class="chat-typing" id="chatTyping">Bot is typing...</div>
+          <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button class="send-button">
+              <i class="fa fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+        <div class="chat-button" id="chatButton">
+          <i class="fa fa-comments fa-2x"></i>
+        </div>
+      </div>
+
+    <!-- Back to Top -->
+    <a href="#home" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Our Cause - Donation</title>
+    <title>CSJ</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/icon/icon-10.png" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color:#2EB872;
+            --accent-color: #e74c3c;
+            --light-color: #F3F4F5;
+            --dark-color: #282F34;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .donation-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .donation-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .donation-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .impact-list {
+            margin-bottom: 1.5rem;
+        }
+        
+        .impact-list li {
+            margin-bottom: 0.5rem;
+            list-style-position: inside;
+        }
+        
+        form div {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .amount-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .amount-option {
+            flex: 1;
+            min-width: 70px;
+            background-color: var(--light-color);
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .amount-option:hover, .amount-option.selected {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .custom-amount {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .custom-amount span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .secure-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .testimonials {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .testimonial:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .donation-container {
+                flex-direction: column;
+            }
+            
+            .amount-options {
+                flex-wrap: wrap;
+            }
+            
+            .amount-option {
+                min-width: 30%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <!-- Brand with Logo and Text -->
+            <a href="index.html" class="navbar-brand p-0">
+                <img class="img-fluid me-3" src="img/icon/icon-10.png" alt="Icon" />
+                <h1 class="m-0 text-primary">CSJ</h1>
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse py-4 py-lg-0" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <!-- Added search and mic icons from first example -->
+                <div class="ms-3 d-flex">
+                    <a href="#" class="text-primary me-3"><i class="fas fa-search"></i></a>
+                    <a href="#" class="text-primary"><i class="fas fa-microphone"></i></a>
+                </div>
+            </div>
+        </div>
+      </nav>
+      
+    <div class="container">
+        <header>
+            <div class="logo">ChangeHope</div>
+            <h1>Make a Difference Today</h1>
+            <p class="tagline">Your generosity can change lives. Every donation counts.</p>
+        </header>
+        
+        <div class="donation-container">
+            <div class="donation-info">
+                <h2>Why Your Support Matters</h2>
+                <p>Your donation helps us continue our mission to create positive change in our community. We work tirelessly to address the most pressing challenges and make a lasting impact.</p>
+                
+                <h2>Your Impact</h2>
+                <ul class="impact-list">
+                    <li>$25 provides essential supplies for a family in need</li>
+                    <li>$50 sponsors educational materials for underprivileged children</li>
+                    <li>$100 funds a week of meals for our community kitchen</li>
+                    <li>$250 helps provide shelter for those facing housing insecurity</li>
+                </ul>
+                
+                <p>We're committed to transparency and responsible stewardship of your generous gifts. 90% of every donation goes directly to our programs.</p>
+            </div>
+            
+            <div class="donation-form">
+                <h2>Make Your Donation</h2>
+                <form>
+                    <div>
+                        <label>Choose an Amount</label>
+                        <div class="amount-options">
+                            <div class="amount-option">$25</div>
+                            <div class="amount-option selected">$50</div>
+                            <div class="amount-option">$100</div>
+                            <div class="amount-option">$250</div>
+                        </div>
+                        <div class="custom-amount">
+                            <span>$</span>
+                            <input type="number" placeholder="Custom amount">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="frequency">Donation Frequency</label>
+                        <select id="frequency">
+                            <option value="once">One-time donation</option>
+                            <option value="monthly">Monthly recurring</option>
+                            <option value="quarterly">Quarterly recurring</option>
+                            <option value="yearly">Yearly recurring</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div>
+                        <label for="payment">Payment Method</label>
+                        <select id="payment">
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank">Bank Transfer</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">Donate Now</button>
+                    
+                    <div class="secure-info">
+                        <span>🔒 Secure Payment</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <h2>Donor Stories</h2>
+            <div class="testimonial">
+                <p class="testimonial-text">"I've been donating monthly for over a year, and it's incredible to see the impact this organization is making. The transparency and regular updates make me confident my contribution is truly helping."</p>
+                <p class="testimonial-author">- Sarah M.</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"After seeing firsthand how they helped my community recover from hardship, I knew I had to support their mission. Even small donations add up to make a big difference."</p>
+                <p class="testimonial-author">- Michael T.</p>
+            </div>
+        </div>
+
+        <!--ai chat bot-->
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+          <div class="chat-header">
+            <h4>Conservation Support</h4>
+            <span class="close-chat">&times;</span>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+              Hi there! I'm here to help with any questions about endangered species and conservation. How can I assist you today?
+            </div>
+          </div>
+          <div class="chat-typing" id="chatTyping">Bot is typing...</div>
+          <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button class="send-button">
+              <i class="fa fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+        <div class="chat-button" id="chatButton">
+          <i class="fa fa-comments fa-2x"></i>
+        </div>
+      </div>
+        
+        <footer>
+            <p>ChangeHope is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible.</p>
+            <p>© CSJ. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
