@@ -590,7 +590,8 @@ $(window).scroll(function () {
     }
   });
 
-  document.addEventListener('DOMContentLoaded', function() {
+  //ai chatbot
+   document.addEventListener('DOMContentLoaded', function() {
     const chatButton = document.getElementById('chatButton');
     const chatBox = document.getElementById('chatBox');
     const closeChat = document.querySelector('.close-chat');
@@ -598,94 +599,151 @@ $(window).scroll(function () {
     const userInput = document.getElementById('userInput');
     const chatMessages = document.getElementById('chatMessages');
     const chatTyping = document.getElementById('chatTyping');
-    
-    // Toggle chat box
+
+    // Initialize knowledge base
+    const knowledgeBase = {
+        greetings: ['hello', 'hi', 'hey', 'greetings', 'howdy', 'good morning', 'good afternoon', 'good evening'],
+        biodiversity: ['biodiversity', 'ecosystem', 'species', 'conservation', 'nature', 'environment', 'wildlife'],
+        endangered: ['endangered', 'extinct', 'threatened', 'conservation status', 'red list'],
+        climate: ['climate', 'global warming', 'climate change', 'carbon', 'greenhouse', 'temperature', 'warming'],
+        ocean: ['ocean', 'marine', 'sea', 'coral', 'reef', 'plastic', 'pollution', 'fish', 'sharks', 'whales'],
+        forests: ['forest', 'rainforest', 'deforestation', 'trees', 'amazon', 'logging', 'timber', 'woodland']
+    };
+
+    // Set up responses
+    const responses = {
+        greetings: [
+            "Hello! How can I help you learn about biodiversity today?",
+            "Hi there! I'm your biodiversity assistant. What would you like to know?",
+            "Greetings! I'm here to answer your questions about nature and conservation."
+        ],
+        biodiversity: [
+            "Biodiversity refers to the variety of life on Earth. It includes the diversity within species, between species, and of ecosystems. What specific aspect interests you?",
+            "Biodiversity is essential for maintaining healthy ecosystems. It provides ecosystem services like clean air, water, and food. Would you like to know more about a specific aspect?",
+            "The Earth's biodiversity is currently facing many threats including habitat loss, climate change, pollution, and overexploitation. How can I provide more specific information?"
+        ],
+        endangered: [
+            "There are currently over 40,000 species listed as threatened with extinction on the IUCN Red List. Which endangered species would you like to learn about?",
+            "Endangered species are those at risk of becoming extinct. Major threats include habitat loss, poaching, climate change, and pollution. Any specific species you're interested in?",
+            "Conservation efforts worldwide aim to protect endangered species through habitat protection, breeding programs, and anti-poaching measures. Would you like details on a particular species?"
+        ],
+        climate: [
+            "Climate change is a major threat to biodiversity. Rising temperatures affect habitats, migration patterns, and can lead to extinction. What aspect would you like to explore?",
+            "Global warming impacts ecosystems worldwide, from coral bleaching in oceans to drought in forests. How can I provide more specific information?",
+            "Many species are struggling to adapt to rapid climate change. This includes shifts in flowering times, migration patterns, and habitat ranges. Would you like to know more about this?"
+        ],
+        ocean: [
+            "Marine biodiversity is essential for healthy oceans. Threats include overfishing, pollution, habitat destruction, and climate change. What specific marine topic interests you?",
+            "Oceans cover 71% of Earth's surface and contain 97% of Earth's water. They're home to millions of species, many still undiscovered. What would you like to know about marine life?",
+            "Coral reefs are among the most diverse ecosystems on Earth, but they're threatened by warming oceans and acidification. Would you like to learn more about marine conservation?"
+        ],
+        forests: [
+            "Forests cover about 31% of the world's land surface and are home to 80% of the world's terrestrial biodiversity. What aspect of forest ecology interests you?",
+            "Deforestation continues at an alarming rate worldwide, with about 10 million hectares lost annually. This threatens countless species. How can I elaborate on this topic?",
+            "Forests play a crucial role in climate regulation, water cycles, and providing habitat for countless species. What would you like to know about forest conservation?"
+        ],
+        default: [
+            "That's an interesting question about our natural world. Could you provide more details so I can give you a better answer?",
+            "I'm here to help with questions about biodiversity and conservation. Could you rephrase your question?",
+            "I'd be happy to discuss that topic related to biodiversity. Could you elaborate on what specific information you're looking for?",
+            "I'm your biodiversity assistant. I can answer questions about species, ecosystems, conservation, and environmental challenges. What would you like to know more about?"
+        ]
+    };
+
+    // Chat interface functions
     chatButton.addEventListener('click', function() {
-      if (chatBox.style.display === 'none' || chatBox.style.display === '') {
-        chatBox.style.display = 'flex';
-      } else {
-        chatBox.style.display = 'none';
-      }
+        chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
     });
-    
-    // Close chat box
+
     closeChat.addEventListener('click', function() {
-      chatBox.style.display = 'none';
+        chatBox.style.display = 'none';
     });
-    
-    // Send message
-    function sendMessage() {
-      const message = userInput.value.trim();
-      if (message !== '') {
-        // Add user message
-        addMessage(message, 'user');
-        userInput.value = '';
-        
-        // Show typing indicator
-        chatTyping.style.display = 'block';
-        
-        // Simulate bot response after a delay
-        setTimeout(function() {
-          chatTyping.style.display = 'none';
-          processBotResponse(message);
-        }, 1500);
-      }
-    }
-    
-    // Process when send button is clicked
+
     sendButton.addEventListener('click', sendMessage);
-    
-    // Process when Enter key is pressed
+
     userInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
+        if (e.key === 'Enter') sendMessage();
     });
-    
-    // Function to add a message to the chat
+
+    function sendMessage() {
+        const message = userInput.value.trim();
+        if (message) {
+            addMessage(message, 'user');
+            userInput.value = '';
+            chatTyping.style.display = 'block';
+            
+            // Simulate thinking time
+            setTimeout(() => {
+                chatTyping.style.display = 'none';
+                processBotResponse(message);
+            }, Math.random() * 1000 + 500); // Random delay between 500-1500ms for more natural feel
+        }
+    }
+
     function addMessage(text, sender) {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message');
-      messageDiv.classList.add(sender + '-message');
-      messageDiv.textContent = text;
-      chatMessages.appendChild(messageDiv);
-      
-      // Scroll to the bottom of messages
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', `${sender}-message`);
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function processBotResponse(userMessage) {
+        const botResponse = getBotResponse(userMessage);
+        addMessage(botResponse, 'bot');
+    }
+
+    function getBotResponse(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // Check which category this message best fits
+        let bestCategory = 'default';
+        let bestMatchCount = 0;
+        
+        for (const [category, keywords] of Object.entries(knowledgeBase)) {
+            const matchCount = keywords.filter(keyword => lowerMessage.includes(keyword)).length;
+            if (matchCount > bestMatchCount) {
+                bestMatchCount = matchCount;
+                bestCategory = category;
+            }
+        }
+        
+        // If it's a question about a specific animal or plant
+        if (lowerMessage.includes('what is') || lowerMessage.includes('tell me about')) {
+            const potentialSpecies = extractPotentialSpecies(lowerMessage);
+            if (potentialSpecies) {
+                return `The ${potentialSpecies} is a fascinating species. While I have limited information, it's part of Earth's amazing biodiversity. Would you like to know about its conservation status or habitat?`;
+            }
+        }
+        
+        // If it's a general question
+        if (lowerMessage.includes('what') || lowerMessage.includes('how') || lowerMessage.includes('why') || lowerMessage.includes('?')) {
+            if (bestCategory === 'default') {
+                return "That's an interesting question. I'm specialized in biodiversity topics. Could you ask something related to species, ecosystems, or conservation?";
+            }
+        }
+        
+        // Get a random response from the appropriate category
+        const categoryResponses = responses[bestCategory];
+        return categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
     }
     
-    // Function to process bot responses
-    function processBotResponse(userMessage) {
-      let botResponse = '';
-      
-      // Simple response logic - could be replaced with more sophisticated AI in production
-      userMessage = userMessage.toLowerCase();
-      
-      if (userMessage.includes('hello') || userMessage.includes('hi') || userMessage.includes('hey')) {
-        botResponse = 'Hello! How can I help you with wildlife conservation today?';
-      } 
-      else if (userMessage.includes('endangered') || userMessage.includes('species')) {
-        botResponse = 'There are over 41,000 species on the IUCN Red List, with more than 16,000 species threatened with extinction. Would you like to know more about specific endangered animals or plants?';
-      }
-      else if (userMessage.includes('donate') || userMessage.includes('help') || userMessage.includes('support')) {
-        botResponse = 'Thank you for your interest in supporting our cause! Your donations help fund rescue operations, habitat protection, and education programs. Would you like information on how to contribute?';
-      }
-      else if (userMessage.includes('animal') || userMessage.includes('wildlife')) {
-        botResponse = 'We work to protect many endangered animals including the Amur Leopard, Javan Rhino, Vaquita, and Mountain Gorilla. Would you like specific information about any of these species?';
-      }
-      else if (userMessage.includes('plant') || userMessage.includes('tree') || userMessage.includes('forest')) {
-        botResponse = 'Plant conservation is crucial for ecosystem health. We work to protect rare plants like Nepenthes rajah and Calliandra grandiflora. Would you like to learn more about plant conservation or how you can help?';
-      }
-      else if (userMessage.includes('volunteer') || userMessage.includes('join')) {
-        botResponse = 'We have various volunteer opportunities both locally and online! Check our Community page for current openings or send us an email at hello@reallygreatsite.com for more information.';
-      }
-      else {
-        botResponse = 'Thank you for your message. Would you like information about endangered species, conservation efforts, or ways you can help protect biodiversity?';
-      }
-      
-      addMessage(botResponse, 'bot');
+    function extractPotentialSpecies(message) {
+        // Extract potential species names from patterns like "what is a tiger" or "tell me about pandas"
+        const whatIsMatch = message.match(/what is an? ([a-z ]+)(\?|$)/i);
+        const tellMeMatch = message.match(/tell me about ([a-z ]+)(\?|$)/i);
+        
+        if (whatIsMatch) return whatIsMatch[1].trim();
+        if (tellMeMatch) return tellMeMatch[1].trim();
+        
+        return null;
     }
-  });
+
+    // Add a welcome message when the chat first opens
+    setTimeout(() => {
+        addMessage("Hello! I'm your biodiversity assistant. Ask me anything about species, ecosystems, or conservation!", 'bot');
+    }, 500);
+});
 
   //analysis function
   document.addEventListener('DOMContentLoaded', function() {
